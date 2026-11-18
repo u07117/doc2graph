@@ -1,0 +1,459 @@
+{
+  "document_type": "business_process",
+  "graph_title": "Loan approval process",
+  "note": "Reference graph hand-built from sample_documents/loan_approval_policy.md. Have a process owner verify it.",
+  "nodes": [
+    {
+      "id": "G1",
+      "type": "start",
+      "name": "Applicant submits application",
+      "actor": "Applicant",
+      "evidence": [
+        "The applicant submits identity, income, employment and requested amount details"
+      ]
+    },
+    {
+      "id": "G2",
+      "type": "activity",
+      "name": "Check mandatory fields",
+      "actor": "Loan Operations",
+      "evidence": [
+        "Loan Operations checks mandatory fields"
+      ]
+    },
+    {
+      "id": "G3",
+      "type": "decision",
+      "name": "Information complete?",
+      "actor": "Loan Operations",
+      "evidence": [
+        "If information is missing, the application remains pending"
+      ]
+    },
+    {
+      "id": "G4",
+      "type": "activity",
+      "name": "Contact applicant for missing information",
+      "actor": "Loan Operations",
+      "evidence": [
+        "the application remains pending and the applicant is contacted"
+      ]
+    },
+    {
+      "id": "G5",
+      "type": "activity",
+      "name": "Validate identity documents and consistency",
+      "actor": "Verification Team",
+      "evidence": [
+        "The Verification Team validates identity documents and consistency"
+      ]
+    },
+    {
+      "id": "G6",
+      "type": "decision",
+      "name": "Documents valid and consistent?",
+      "actor": "Verification Team",
+      "evidence": [
+        "Invalid or inconsistent documents trigger a clarification request"
+      ]
+    },
+    {
+      "id": "G7",
+      "type": "activity",
+      "name": "Request clarification",
+      "actor": "Verification Team",
+      "evidence": [
+        "trigger a clarification request and another verification attempt"
+      ]
+    },
+    {
+      "id": "G8",
+      "type": "decision",
+      "name": "Material discrepancy resolved?",
+      "actor": "Verification Team",
+      "evidence": [
+        "An unresolved material discrepancy results in decline"
+      ]
+    },
+    {
+      "id": "G9",
+      "type": "activity",
+      "name": "Obtain credit report",
+      "actor": "Credit Team",
+      "evidence": [
+        "The Credit Team obtains a credit report"
+      ],
+      "aliases": [
+        "Pull credit bureau report"
+      ]
+    },
+    {
+      "id": "G10",
+      "type": "decision",
+      "name": "Credit report available?",
+      "actor": "Credit Team",
+      "evidence": [
+        "If the report is unavailable, the application is put on hold"
+      ]
+    },
+    {
+      "id": "G11",
+      "type": "event",
+      "name": "Application put on hold",
+      "actor": "Credit Team",
+      "evidence": [
+        "the application is put on hold"
+      ]
+    },
+    {
+      "id": "G12",
+      "type": "activity",
+      "name": "Review repayment history, obligations and income",
+      "actor": "Credit Team",
+      "evidence": [
+        "reviews repayment history, obligations and income"
+      ]
+    },
+    {
+      "id": "G13",
+      "type": "decision",
+      "name": "Meets eligibility policy?",
+      "actor": "Credit Team",
+      "evidence": [
+        "Applications failing the lender's eligibility policy are declined"
+      ]
+    },
+    {
+      "id": "G14",
+      "type": "activity",
+      "name": "Risk review",
+      "actor": "Risk Review",
+      "evidence": [
+        "Eligible applications go to Risk Review"
+      ]
+    },
+    {
+      "id": "G15",
+      "type": "decision",
+      "name": "Fraud concern cleared?",
+      "actor": "Risk Review",
+      "evidence": [
+        "An unresolved material fraud concern results in decline"
+      ]
+    },
+    {
+      "id": "G16",
+      "type": "decision",
+      "name": "Approve or decline with reason",
+      "actor": "Credit Approver",
+      "evidence": [
+        "The Credit Approver records approve or decline with a reason"
+      ]
+    },
+    {
+      "id": "G17",
+      "type": "activity",
+      "name": "Issue offer",
+      "actor": "Unknown",
+      "evidence": [
+        "Approved applications receive an offer"
+      ],
+      "aliases": [
+        "Generate offer",
+        "Send offer"
+      ]
+    },
+    {
+      "id": "G18",
+      "type": "decision",
+      "name": "Offer accepted?",
+      "actor": "Applicant",
+      "evidence": [
+        "Rejected or expired offers close the application"
+      ]
+    },
+    {
+      "id": "G19",
+      "type": "end",
+      "name": "Close application",
+      "actor": "Unknown",
+      "evidence": [
+        "Rejected or expired offers close the application"
+      ]
+    },
+    {
+      "id": "G20",
+      "type": "activity",
+      "name": "Sign agreement and verify consent",
+      "actor": "Unknown",
+      "evidence": [
+        "Accepted offers proceed to agreement signing and consent verification"
+      ]
+    },
+    {
+      "id": "G21",
+      "type": "decision",
+      "name": "Signatures and consents complete?",
+      "actor": "Unknown",
+      "evidence": [
+        "Missing signatures or consents are requested"
+      ]
+    },
+    {
+      "id": "G22",
+      "type": "activity",
+      "name": "Request missing signatures or consents",
+      "actor": "Unknown",
+      "evidence": [
+        "Missing signatures or consents are requested"
+      ]
+    },
+    {
+      "id": "G23",
+      "type": "activity",
+      "name": "Validate beneficiary account details",
+      "actor": "Disbursement Team",
+      "evidence": [
+        "The Disbursement Team validates beneficiary account details"
+      ]
+    },
+    {
+      "id": "G24",
+      "type": "activity",
+      "name": "Initiate transfer",
+      "actor": "Disbursement Team",
+      "evidence": [
+        "initiates transfer"
+      ],
+      "aliases": [
+        "Start the funds transfer",
+        "Transfer funds"
+      ]
+    },
+    {
+      "id": "G25",
+      "type": "decision",
+      "name": "Transfer successful?",
+      "actor": "Disbursement Team",
+      "evidence": [
+        "Successful transfer marks the loan disbursed"
+      ]
+    },
+    {
+      "id": "G26",
+      "type": "end",
+      "name": "Loan disbursed",
+      "actor": "Disbursement Team",
+      "evidence": [
+        "Successful transfer marks the loan disbursed"
+      ]
+    },
+    {
+      "id": "G27",
+      "type": "activity",
+      "name": "Investigate and correct failed transfer",
+      "actor": "Disbursement Team",
+      "evidence": [
+        "Failed transfers are investigated, corrected and retried or escalated"
+      ]
+    },
+    {
+      "id": "G28",
+      "type": "end",
+      "name": "Escalate failed transfer",
+      "actor": "Disbursement Team",
+      "evidence": [
+        "retried or escalated"
+      ]
+    },
+    {
+      "id": "G29",
+      "type": "end",
+      "name": "Decline application",
+      "actor": "Unknown",
+      "evidence": [
+        "results in decline"
+      ],
+      "aliases": [
+        "Reject application"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "G1",
+      "to": "G2",
+      "label": ""
+    },
+    {
+      "from": "G2",
+      "to": "G3",
+      "label": ""
+    },
+    {
+      "from": "G3",
+      "to": "G4",
+      "label": "information missing"
+    },
+    {
+      "from": "G4",
+      "to": "G2",
+      "label": "information arrives"
+    },
+    {
+      "from": "G3",
+      "to": "G5",
+      "label": "complete"
+    },
+    {
+      "from": "G5",
+      "to": "G6",
+      "label": ""
+    },
+    {
+      "from": "G6",
+      "to": "G7",
+      "label": "invalid or inconsistent"
+    },
+    {
+      "from": "G7",
+      "to": "G8",
+      "label": ""
+    },
+    {
+      "from": "G8",
+      "to": "G5",
+      "label": "resolved"
+    },
+    {
+      "from": "G8",
+      "to": "G29",
+      "label": "unresolved material discrepancy"
+    },
+    {
+      "from": "G6",
+      "to": "G9",
+      "label": "valid"
+    },
+    {
+      "from": "G9",
+      "to": "G10",
+      "label": ""
+    },
+    {
+      "from": "G10",
+      "to": "G11",
+      "label": "report unavailable"
+    },
+    {
+      "from": "G10",
+      "to": "G12",
+      "label": "available"
+    },
+    {
+      "from": "G12",
+      "to": "G13",
+      "label": ""
+    },
+    {
+      "from": "G13",
+      "to": "G29",
+      "label": "fails eligibility policy"
+    },
+    {
+      "from": "G13",
+      "to": "G14",
+      "label": "eligible"
+    },
+    {
+      "from": "G14",
+      "to": "G15",
+      "label": ""
+    },
+    {
+      "from": "G15",
+      "to": "G29",
+      "label": "unresolved fraud concern"
+    },
+    {
+      "from": "G15",
+      "to": "G16",
+      "label": "cleared"
+    },
+    {
+      "from": "G16",
+      "to": "G17",
+      "label": "approve"
+    },
+    {
+      "from": "G16",
+      "to": "G29",
+      "label": "decline"
+    },
+    {
+      "from": "G17",
+      "to": "G18",
+      "label": ""
+    },
+    {
+      "from": "G18",
+      "to": "G19",
+      "label": "rejected or expired"
+    },
+    {
+      "from": "G18",
+      "to": "G20",
+      "label": "accepted"
+    },
+    {
+      "from": "G20",
+      "to": "G21",
+      "label": ""
+    },
+    {
+      "from": "G21",
+      "to": "G22",
+      "label": "missing signatures or consents"
+    },
+    {
+      "from": "G22",
+      "to": "G21",
+      "label": ""
+    },
+    {
+      "from": "G21",
+      "to": "G23",
+      "label": "complete"
+    },
+    {
+      "from": "G23",
+      "to": "G24",
+      "label": ""
+    },
+    {
+      "from": "G24",
+      "to": "G25",
+      "label": ""
+    },
+    {
+      "from": "G25",
+      "to": "G26",
+      "label": "successful"
+    },
+    {
+      "from": "G25",
+      "to": "G27",
+      "label": "failed"
+    },
+    {
+      "from": "G27",
+      "to": "G24",
+      "label": "retry"
+    },
+    {
+      "from": "G27",
+      "to": "G28",
+      "label": "escalate"
+    }
+  ]
+}
